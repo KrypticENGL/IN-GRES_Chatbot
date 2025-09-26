@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      - NODE_ENV=production
+      - PORT=8080
+    volumes:
+      # Mount environment files if they exist
+      - ./.env:/app/.env:ro
+      - ./client/.env:/app/client/.env:ro
+      - ./server/.env:/app/server/.env:ro
+    restart: unless-stopped
+
+  # Development service with hot reload
+  dev:
+    build: .
+    ports:
+      - "8080:8080"
+      - "5173:5173"
+    environment:
+      - NODE_ENV=development
+      - PORT=8080
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/client/node_modules
+      - /app/server/node_modules
+    command: npm run dev
+    profiles:
+      - dev
