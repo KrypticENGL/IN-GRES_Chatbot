@@ -37,6 +37,10 @@ app.get('/dashboard', (req, res) =>{
 	res.status(200).sendFile(path.join(__dirname, "../client/dist/index.html"));
 })
 
+app.get('/about', (req, res) =>{
+	res.status(200).sendFile(path.join(__dirname, "../client/dist/index.html"));
+})
+
 
 app.listen(port, (error) => 
 {

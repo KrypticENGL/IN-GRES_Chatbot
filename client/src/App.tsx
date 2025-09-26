@@ -3,6 +3,7 @@ import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from './config/firebase';
 import LoginPage from './components/LoginPage';
 import HomeDashboard from './components/HomeDashboard';
+import AboutUs from './components/AboutUs';
 import './App.css';
 
 function App() {
@@ -45,6 +46,10 @@ function App() {
   // Route based on current path
   if (currentPath === '/dashboard') {
     return <HomeDashboard />;
+  }
+
+  if (currentPath === '/about') {
+    return <AboutUs />;
   }
 
   return <LoginPage />;
